@@ -61,7 +61,7 @@ void nrfSetup () {
 
   radio.setPALevel(RF24_PA_MAX);
   radio.enableAckPayload();
-  radio.setRetries(7, 3);                 // delay, count  //5 for NRF
+  radio.setRetries(7, 0);                 // delay, count
   radio.openWritingPipe(slaveAddress);
 }
 

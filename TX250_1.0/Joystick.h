@@ -74,8 +74,8 @@ void joystickSetup() {
 }
 
 void joystickLoop() {
-  X1 = -(analogRead(JOYSTICK_X1) - midX1);                     //read joystick and apply offset
-  if (abs(X1) < deadStick) X1 = 0;                             //set deadstick
+  X1 = -(analogRead(JOYSTICK_X1) - midX1);                      //read joystick and apply offset
+  if (abs(X1) < deadStick) X1 = 0;                              //set deadstick
   if (X1 < 0) X1 = map(X1, -deadStick, midX1 - maxX1, 0, -500); //map bottom range
   if (X1 > 0) X1 = map(X1,  deadStick, midX1 - minX1, 0,  500); //map top range
 
