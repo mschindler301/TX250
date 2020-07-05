@@ -106,9 +106,9 @@ void screen_2() {
     midPoint = 1300;
   }
   if (profileSelect == 3 && profileEdit == true) {
-    kp = 0.42;  //uTini
+    kp = 0.35;  //uTini
     ki = 3.00;
-    kd = 2.70;
+    kd = 1.80;
     midPoint = 1500;
   }
   if (profileSelect == 4 && profileEdit == true) {
