@@ -84,6 +84,7 @@ void nrfLoop() {
       yaw       = myTele.feedback_4 * 0.01;
 
       if (printData == true) {
+        Serial.print(millis());          Serial.print("\t");
         Serial.print(droneVolt);          Serial.print("\t");
         Serial.print(roll);               Serial.print("\t");
         Serial.print(pitch);              Serial.print("\t");
