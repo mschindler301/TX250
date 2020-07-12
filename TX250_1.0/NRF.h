@@ -69,7 +69,7 @@ void nrfSetup () {
 
 void nrfLoop() {
   newData = false;
-  
+
   if (radio.write( &myData, sizeof(myData) )) {
     if ( radio.isAckPayloadAvailable() ) {
       radio.read(&myTele, sizeof(myTele));
@@ -82,6 +82,26 @@ void nrfLoop() {
       roll      = myTele.feedback_2 * 0.01;
       pitch     = myTele.feedback_3 * 0.01;
       yaw       = myTele.feedback_4 * 0.01;
+
+      if (printData == true) {
+        Serial.print(droneVolt);          Serial.print("\t");
+        Serial.print(roll);               Serial.print("\t");
+        Serial.print(pitch);              Serial.print("\t");
+        Serial.print(yaw);                Serial.print("\t");
+        Serial.print(myTele.feedback_5);  Serial.print("\t");
+        Serial.print(myTele.feedback_6);  Serial.print("\t");
+        Serial.print(myTele.feedback_7);  Serial.print("\t");
+        Serial.print(myTele.feedback_8);  Serial.print("\t");
+        Serial.print(myTele.feedback_9);  Serial.print("\t");
+        Serial.print(myTele.feedback_10); Serial.print("\t");
+        Serial.print(myTele.feedback_11); Serial.print("\t");
+        Serial.print(myTele.feedback_12); Serial.print("\t");
+        Serial.print(myTele.feedback_13); Serial.print("\t");
+        Serial.print(myTele.feedback_14); Serial.print("\t");
+        Serial.print(myTele.feedback_15); Serial.print("\t");
+        Serial.print(myTele.feedback_16); Serial.print("\t");
+        Serial.println();
+      }
     }
   }
 
@@ -93,24 +113,4 @@ void nrfLoop() {
   }
 
   if (micros() - noSignalTimer > 1000000) signalFlag = false;
-
-  if (printData == true) {
-    Serial.print(droneVolt);          Serial.print("\t");
-    Serial.print(roll);               Serial.print("\t");
-    Serial.print(pitch);              Serial.print("\t");
-    Serial.print(yaw);                Serial.print("\t");
-    Serial.print(myTele.feedback_5);  Serial.print("\t");
-    Serial.print(myTele.feedback_6);  Serial.print("\t");
-    Serial.print(myTele.feedback_7);  Serial.print("\t");
-    Serial.print(myTele.feedback_8);  Serial.print("\t");
-    Serial.print(myTele.feedback_9);  Serial.print("\t");
-    Serial.print(myTele.feedback_10); Serial.print("\t");
-    Serial.print(myTele.feedback_11); Serial.print("\t");
-    Serial.print(myTele.feedback_12); Serial.print("\t");
-    Serial.print(myTele.feedback_13); Serial.print("\t");
-    Serial.print(myTele.feedback_14); Serial.print("\t");
-    Serial.print(myTele.feedback_15); Serial.print("\t");
-    Serial.print(myTele.feedback_16); Serial.print("\t");
-    Serial.println();
-  }
 }
