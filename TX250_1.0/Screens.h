@@ -242,3 +242,26 @@ void screen_6 () {
   }
   else lcd.print("SD Not Inserted");
 }
+
+//// Serial Logging ////
+void screen_7 () {
+    lcd.print("Serial Logging");
+
+    if (!digitalRead(SWITCH_R) && printData == false) {
+      printData = true;
+      delay(200);
+    }
+    if (!digitalRead(SWITCH_R) && printData == true) {
+      printData = false;
+      delay(200);
+    }
+
+    if (printData == true) {
+      lcd.setCursor(0, 1);
+      lcd.print("Printing");
+    }
+    if (printData == false) {
+      lcd.setCursor(0, 1);
+      lcd.print("Not Printing");
+  }
+}

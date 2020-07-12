@@ -18,6 +18,8 @@ unsigned long noSignalTimer;
 double droneVolt;
 double roll, pitch, yaw;
 
+boolean printData = false;
+
 struct dataStruct {      //this is the NRF data. Max of 32 bytes
   int  X1;               //double  = 4 bytes
   int  Y1;               //int     = 2 bytes
@@ -91,4 +93,24 @@ void nrfLoop() {
   }
 
   if (micros() - noSignalTimer > 1000000) signalFlag = false;
+
+  if (printData == true) {
+    Serial.print(droneVolt);          Serial.print("\t");
+    Serial.print(roll);               Serial.print("\t");
+    Serial.print(pitch);              Serial.print("\t");
+    Serial.print(yaw);                Serial.print("\t");
+    Serial.print(myTele.feedback_5);  Serial.print("\t");
+    Serial.print(myTele.feedback_6);  Serial.print("\t");
+    Serial.print(myTele.feedback_7);  Serial.print("\t");
+    Serial.print(myTele.feedback_8);  Serial.print("\t");
+    Serial.print(myTele.feedback_9);  Serial.print("\t");
+    Serial.print(myTele.feedback_10); Serial.print("\t");
+    Serial.print(myTele.feedback_11); Serial.print("\t");
+    Serial.print(myTele.feedback_12); Serial.print("\t");
+    Serial.print(myTele.feedback_13); Serial.print("\t");
+    Serial.print(myTele.feedback_14); Serial.print("\t");
+    Serial.print(myTele.feedback_15); Serial.print("\t");
+    Serial.print(myTele.feedback_16); Serial.print("\t");
+    Serial.println();
+  }
 }

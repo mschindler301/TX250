@@ -11,7 +11,7 @@ int Screen;
 unsigned long timerLCD;
 
 unsigned long lcdRefreshTime = 500000; //micro-seconds
-int maxScreenNumber = 6;
+int maxScreenNumber = 7;
 
 void lcdSetup() {
   lcd.begin(16, 2);
@@ -67,6 +67,7 @@ void LCDLoop() {
     if (Screen == 4) screen_4(); //Euler
     if (Screen == 5) screen_5(); //Calibration
     if (Screen == 6) screen_6(); //SD Card
+    if (Screen == 7) screen_7(); //Print Data
 
     if (Screen != 2) profileEdit = false;
     if (Screen != 3) pidEdit     = false;
