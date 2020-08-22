@@ -17,6 +17,8 @@ unsigned long noSignalTimer;
 
 double droneVolt;
 double roll, pitch, yaw;
+double heading;
+double latitude, longitude, velocity, alt;
 
 boolean printData = false;
 
@@ -37,18 +39,18 @@ struct dataStruct {      //this is the NRF data. Max of 32 bytes
 } myData;
 
 struct dataStruct1 {
-  int feedback_1;  //Voltage (multiple of 1000)
-  int feedback_2;  //Roll    (multiple of 100)
-  int feedback_3;  //Pitch   (multiple of 100)
-  int feedback_4;  //Yaw     (multiple of 100)
-  int feedback_5;  //acc_x
-  int feedback_6;  //acc_y
-  int feedback_7;  //acc_x
-  int feedback_8;  //gyro_x
-  int feedback_9;  //gyro_y
-  int feedback_10; //gyro_z
-  int feedback_11; //angle_roll_acc   (multiple of 100)
-  int feedback_12; //angle_roll_pitch (multiple of 100)
+  int feedback_1;     //Voltage  (multiple of 1000)
+  int feedback_2;     //Roll     (multiple of 100)
+  int feedback_3;     //Pitch    (multiple of 100)
+  int feedback_4;     //Yaw      (multiple of 100)
+  int feedback_5;     //heading
+  int feedback_6;  //latitude
+  int feedback_7;  //longitiude
+  int feedback_8;     //altitude
+  int feedback_9;     //velcoity (multiple of 100)
+  int feedback_10;    //
+  int feedback_11;    //
+  int feedback_12;    //
   int feedback_13;
   int feedback_14;
   int feedback_15;
@@ -82,6 +84,11 @@ void nrfLoop() {
       roll      = myTele.feedback_2 * 0.01;
       pitch     = myTele.feedback_3 * 0.01;
       yaw       = myTele.feedback_4 * 0.01;
+      heading   = myTele.feedback_5 * 0.1;
+      latitude  = myTele.feedback_6;
+      longitude = myTele.feedback_7;
+      velocity  = myTele.feedback_8 * 0.01;
+      alt       = myTele.feedback_9 * 0.1;
 
       if (printData == true) {
         Serial.print(millis());          Serial.print("\t");
@@ -89,11 +96,11 @@ void nrfLoop() {
         Serial.print(roll);               Serial.print("\t");
         Serial.print(pitch);              Serial.print("\t");
         Serial.print(yaw);                Serial.print("\t");
-        Serial.print(myTele.feedback_5);  Serial.print("\t");
-        Serial.print(myTele.feedback_6);  Serial.print("\t");
-        Serial.print(myTele.feedback_7);  Serial.print("\t");
-        Serial.print(myTele.feedback_8);  Serial.print("\t");
-        Serial.print(myTele.feedback_9);  Serial.print("\t");
+        Serial.print(heading);            Serial.print("\t");
+        Serial.print(latitude,  6);       Serial.print("\t");
+        Serial.print(longitude, 6);       Serial.print("\t");
+        Serial.print(velocity);           Serial.print("\t");
+        Serial.print(alt);                Serial.print("\t");
         Serial.print(myTele.feedback_10); Serial.print("\t");
         Serial.print(myTele.feedback_11); Serial.print("\t");
         Serial.print(myTele.feedback_12); Serial.print("\t");

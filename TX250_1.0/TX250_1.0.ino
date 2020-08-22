@@ -6,6 +6,7 @@ unsigned long loopStart, interval;
 #include "NRF.h"
 #include "Joystick.h"
 #include "LCD.h"
+#include <avr/wdt.h>
 
 void setup() {
   lcdSetup();

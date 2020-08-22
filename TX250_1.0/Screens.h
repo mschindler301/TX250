@@ -75,10 +75,9 @@ void screen_2() {
   lcd.print("Profile:");
   lcd.setCursor(1, 1);
 
-  if (profileSelect == 1) lcd.print("Carbon 3S");
-  if (profileSelect == 2) lcd.print("Carbon 4S");
-  if (profileSelect == 3) lcd.print("uTini");
-  if (profileSelect == 4) lcd.print("F450");
+  if (profileSelect == 1) lcd.print("Carbon");
+  if (profileSelect == 2) lcd.print("uTini");
+  if (profileSelect == 3) lcd.print("F450");
 
   if (S2) profileEdit = !profileEdit;
   if (profileEdit == true) {
@@ -86,7 +85,7 @@ void screen_2() {
     lcd.print(">");
     if (Y2 >  300) profileSelect++;
     if (Y2 < -300) profileSelect--;
-    profileSelect = constrain(profileSelect, 1, 4);
+    profileSelect = constrain(profileSelect, 1, 3);
   }
   else {
     lcd.setCursor(0, 1);
@@ -94,28 +93,22 @@ void screen_2() {
   }
 
   if (profileSelect == 1 && profileEdit == true) {
-    kp = 0.55;  //Carbon 3S
-    ki = 4.00;
-    kd = 5.50;
+    kp = 0.80;  //Carbon
+    ki = 8.00;
+    kd = 3.00;
     midPoint = 1400;
   }
   if (profileSelect == 2 && profileEdit == true) {
-    kp = 0.45;  //Carbon 4S
-    ki = 3.00;
-    kd = 4.50;
-    midPoint = 1300;
-  }
-  if (profileSelect == 3 && profileEdit == true) {
-    kp = 0.35;  //uTini
-    ki = 3.00;
-    kd = 1.80;
+    kp = 0.80;  //uTini
+    ki = 5.00;
+    kd = 3.00;
     midPoint = 1500;
   }
-  if (profileSelect == 4 && profileEdit == true) {
-    kp = 0.00;  //F450
-    ki = 0.00;
-    kd = 0.00;
-    midPoint = 1000;
+  if (profileSelect == 3 && profileEdit == true) {
+    kp = 0.80;  //F450
+    ki = 5.00;
+    kd = 5.00;
+    midPoint = 1352;
   }
 }
 
